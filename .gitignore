@@ -2,3 +2,10 @@
 !.gitignore
 !*.rb
 !*.md
+!*.erb
+!*.scss
+!*.css
+!*.eot
+!*.svg
+!*.ttf
+!*.woff
