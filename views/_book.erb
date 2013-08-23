@@ -3,8 +3,9 @@
 	<% cache_fragment(book["isbn"].to_s) do %>
 		<% gbook = GoogleBooks.search('isbn:' + book["isbn"].to_s).first %>
 		<% if !gbook.nil? %>
+			<h4 class="text-center"><%= gbook.title.split(":")[0] %></h4>
 			<img src="<%= gbook.image_link %>" alt="<%= gbook.title %> by <%= gbook.authors %>" class="img-responsive centered">
-			<div class="text-center pull-bottom">Last read: <%= book["read"] %></div>
+			<div class="text-center">Last read: <%= book["read"] %></div>
 		<% else 
 			@clear = true %>
 			<div class="text-center">Failed to load book. (isbn:<%= book["isbn"].to_s %>)</div>
