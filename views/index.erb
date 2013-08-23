@@ -1,0 +1,14 @@
+<% index = 0 %>
+<% @books.each do |book| %>
+	<% if index != 0 and index % 4 == 0 %>
+		</div>
+	<% end %>
+	<% if index % 4 == 0 %>
+		<div class="row">
+	<% end %>
+	<%= erb :_book, :locals => { :book => book } %>
+	<% if index == @books.length - 1 %>
+		</div>
+	<% end %>
+	<% index += 1 %>
+<% end %>

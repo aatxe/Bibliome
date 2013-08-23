@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<% 
+			if @author and @author.end_with? "s"
+				@title = "#{@author}' Bibliome"
+			elsif @author
+				@title = "#{@author}'s Bibliome"
+			else
+				@title = "Bibliome"
+			end
+		%>
+		<title><%= @title %></title>
+		<meta charset="UTF-8">
+		<meta name="description" content="It's *your* book biome.'" />
+		<meta name="keywords" content="books, reading, read, library, bibliome, book biome, biome" />
+		<meta name="author" content="<%= @author %>" /><!-- By <%= @author %> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="/css/bibliome.css" rel="stylesheet" media="screen">
+	</head>
+	<body>
+		<section id="header" class="container">
+			<div class="row">
+				<h1 class="text-center"><%= @title %></h1>
+			</div>
+		</section>
+		<section id="content" class="container centered">
+			<%= yield %>
+		</section>
+	</body>
+	<% if @analytics_id and @analytics_dm %>
+		<script type="text/javascript">
+	  		var _gaq = _gaq || [];
+	  		_gaq.push(['_setAccount', '<%= @analytics_id %>']);
+	  		_gaq.push(['_setDomainName', '<%= @analytics_dm %>']);
+	  		_gaq.push(['_trackPageview']);
+
+	  		(function() {
+	    		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  	})();
+		</script>
+	<% end %>
+</html>
